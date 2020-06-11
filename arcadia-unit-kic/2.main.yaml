@@ -14,6 +14,7 @@ spec:
   - name: arcadia-main-unit-80
     port: 80
     protocol: TCP
+    targetPort: 8080
   selector:
       app: arcadia-unit
 ---

@@ -8,7 +8,7 @@
     "MainApp":{
       "type":"php",
       "user": "root",
-      "root":"/www/"
+      "root":"/www/files/"
     }
   },
   "routes": {

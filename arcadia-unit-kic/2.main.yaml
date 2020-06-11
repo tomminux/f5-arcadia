@@ -1,0 +1,49 @@
+## -----------------------------
+## ..:: Main app in Arcadia ::..
+## -----------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: main
+  namespace: arcadia
+  labels:
+    app: main
+spec:
+  type: ClusterIP
+  ports:
+  - name: main-8080
+    port: 8080
+    protocol: TCP
+  selector:
+      app: main
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main
+  namespace: arcadia
+  labels:
+    app: main
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: main
+        version: v1
+    spec:
+      containers:
+      - env:
+        - name: service_name
+          value: main
+        image: registry.f5-udf.com:5000/arcadia-unit:main
+        imagePullPolicy: IfNotPresent
+        name: main
+        ports:
+        - containerPort: 8080
+          protocol: TCP

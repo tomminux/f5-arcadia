@@ -1,0 +1,33 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: arcadia-vs
+  namespace: arcadia
+spec:
+  host: arcadia.f5-udf.com
+  upstreams:
+  - name: arcadia-main
+    service: main
+    port: 8080
+  - name: arcadia-backend
+    service: main
+    port: 8080
+  - name: arcadia-app2
+    service: main
+    port: 8080
+  - name: arcadia-app3
+    service: main
+    port: 8080
+  routes:
+  - path: /
+    action:
+      pass: arcadia-main
+  - path: /files
+    action:
+      pass: arcadia-backend
+  - path: /api
+    action:
+      pass: arcadia-app2
+  - path: /app3
+    action:
+      pass: arcadia-app3

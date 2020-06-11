@@ -1,0 +1,49 @@
+## -----------------------------
+## ..:: App3 app in Arcadia ::..
+## -----------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: app3
+  namespace: arcadia
+  labels:
+    app: app3
+spec:
+  type: ClusterIP
+  ports:
+  - name: app3-8080
+    port: 8080
+    protocol: TCP
+  selector:
+      app: app3
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app3
+  namespace: arcadia
+  labels:
+    app: app3
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app3
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: app3
+        version: v1
+    spec:
+      containers:
+      - env:
+        - name: service_name
+          value: app3
+        image: registry.f5-udf.com:5000/arcadia-unit:app3
+        imagePullPolicy: IfNotPresent
+        name: app3
+        ports:
+        - containerPort: 8080
+          protocol: TCP

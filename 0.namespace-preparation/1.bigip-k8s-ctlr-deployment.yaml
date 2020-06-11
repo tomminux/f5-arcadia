@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arcadia-k8s-bigip-ctlr-deployment
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: arcadia-k8s-bigip-ctlr
+  # DO NOT INCREASE REPLICA COUNT
+  replicas: 1
+  template:
+    metadata:
+      name: arcadia-bigip-ctlr
+      labels:
+        app: arcadia-k8s-bigip-ctlr
+    spec:
+      # Name of the Service Account bound to a Cluster Role with the required
+      # permissions
+      serviceAccountName: k8s-bigip-ctlr
+      containers:
+        - name: arcadia-k8s-bigip-ctlr
+          image: "f5networks/k8s-bigip-ctlr"
+          env:
+            - name: BIGIP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  # Replace with the name of the Secret containing your login
+                  # credentials
+                  name: bigip-login
+                  key: username
+            - name: BIGIP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  # Replace with the name of the Secret containing your login
+                  # credentials
+                  name: bigip-login
+                  key: password
+          command: ["/app/bin/k8s-bigip-ctlr"]
+          args: [
+            # See the k8s-bigip-ctlr documentation for information about
+            # all config options
+            # https://clouddocs.f5.com/products/connectors/k8s-bigip-ctlr/latest
+            "--bigip-username=$(BIGIP_USERNAME)",
+            "--bigip-password=$(BIGIP_PASSWORD)",
+            "--bigip-url=10.1.1.9",
+            "--bigip-partition=k8s-udf",
+            "--pool-member-type=cluster",
+            "--insecure=true",
+            "--namespace=arcadia-apps",
+            "--log-level=DEBUG",
+            "--manage-ingress=false",
+            "--manage-routes=false",
+            "--manage-configmaps=true",
+            "--agent=as3",
+            "--as3-validation=true"
+            ]
+      imagePullSecrets:
+        # Secret that gives access to a private docker registry
+        - name: f5-docker-images
+        # Secret containing the BIG-IP system login credentials
+        - name: bigip-login

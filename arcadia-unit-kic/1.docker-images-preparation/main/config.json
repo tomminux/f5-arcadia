@@ -1,6 +1,6 @@
 {
   "listeners":{
-    "*:8080":{
+    "*:80":{
       "pass":"routes/app"
     }
   },

@@ -42,7 +42,7 @@ spec:
         - name: service_name
           value: arcadia-app2-unit
         image: registry.f5-udf.com:5000/arcadia-app2:unit
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: arcadia-app2-unit
         ports:
         - containerPort: 80

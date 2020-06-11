@@ -42,7 +42,7 @@ spec:
         - name: service_name
           value: arcadia-backend-unit
         image: registry.f5-udf.com:5000/arcadia-backend:unit
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         name: arcadia-backend-unit
         ports:
         - containerPort: 80

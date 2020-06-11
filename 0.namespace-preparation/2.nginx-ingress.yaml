@@ -162,7 +162,7 @@ metadata:
   name: nginx-ingress
   namespace: arcadia
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx-ingress

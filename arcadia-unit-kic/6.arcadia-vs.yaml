@@ -1,23 +1,23 @@
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
-  name: arcadia-vs
+  name: arcadia-unit-vs
   namespace: arcadia
 spec:
-  host: arcadia.f5-udf.com
+  host: arcadia-unit.f5-udf.com
   upstreams:
   - name: arcadia-main
-    service: main
-    port: 8080
+    service: arcadia-main-unit
+    port: 80
   - name: arcadia-backend
-    service: main
-    port: 8080
+    service: arcadia-backend-unit
+    port: 80
   - name: arcadia-app2
-    service: main
-    port: 8080
+    service: arcadia-app2-unit
+    port: 80
   - name: arcadia-app3
-    service: main
-    port: 8080
+    service: arcadia-app3-unit
+    port: 80
   routes:
   - path: /
     action:

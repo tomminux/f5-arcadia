@@ -1,49 +1,49 @@
-## -----------------------------
-## ..:: App2 app in Arcadia ::..
-## -----------------------------
+## ----------------------------------
+## ..:: App2 app in Arcadia UNIT ::..
+## ----------------------------------
 apiVersion: v1
 kind: Service
 metadata:
-  name: app2
+  name: arcadia-app2-unit
   namespace: arcadia
   labels:
-    app: app2
+    app: arcadia-unit
 spec:
   type: ClusterIP
   ports:
-  - name: app2-8080
-    port: 8080
+  - name: arcadia-app2-unit-80
+    port: 80
     protocol: TCP
   selector:
-      app: app2
+      app: arcadia-unit
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app2
+  name: arcadia-app2-unit
   namespace: arcadia
   labels:
-    app: app2
+    app: arcadia-unit
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app2
+      app: arcadia-unit
       version: v1
   template:
     metadata:
       labels:
-        app: app2
+        app: arcadia-unit
         version: v1
     spec:
       containers:
       - env:
         - name: service_name
-          value: app2
-        image: registry.f5-udf.com:5000/arcadia-unit:app2
+          value: arcadia-app2-unit
+        image: registry.f5-udf.com:5000/arcadia-app2:unit
         imagePullPolicy: IfNotPresent
-        name: app2
+        name: arcadia-app2-unit
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           protocol: TCP

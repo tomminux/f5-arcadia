@@ -286,7 +286,7 @@ data:
                         "class": "Service_HTTP",
                         "remark": "arcadia-kic-80",
                         "virtualAddresses": [
-                            "10.1.10.100"
+                            "10.1.10.102"
                         ],
                         "pool": "arcadia-kic-pool-80"
                     },
@@ -310,7 +310,7 @@ data:
                         "class": "Service_HTTP",
                         "remark": "arcadia-kic-443",
                         "virtualAddresses": [
-                            "10.1.10.100"
+                            "10.1.10.102"
                         ],
                         "virtualPort": 443,
                         "pool": "arcadia-kic-pool-443"

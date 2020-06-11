@@ -9,4 +9,4 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
     php7.3-curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 80
+EXPOSE 8080

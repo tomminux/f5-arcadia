@@ -6,4 +6,4 @@ COPY files/ /www/files/
 RUN apt-get update && apt-get install -yq --no-install-recommends \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 80
+EXPOSE 8080

@@ -45,5 +45,5 @@ spec:
         imagePullPolicy: Always
         name: arcadia-app3-unit
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           protocol: TCP

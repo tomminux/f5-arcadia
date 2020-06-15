@@ -4,7 +4,7 @@ metadata:
   name: arcadia-unit-vs
   namespace: arcadia
 spec:
-  host: arcadia-unit.f5-udf.com
+  host: www.arcadia-finance.io
   upstreams:
   - name: arcadia-main
     service: arcadia-main
@@ -19,9 +19,6 @@ spec:
   - path: /
     action:
       pass: arcadia-main
-  - path: /files
-    action:
-      pass: arcadia-backend
   - path: /api
     action:
       pass: arcadia-app2

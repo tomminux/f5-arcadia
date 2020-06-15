@@ -7,7 +7,7 @@ metadata:
   name: arcadia-main-unit
   namespace: arcadia
   labels:
-    app: arcadia-unit
+    app: arcadia-main
 spec:
   type: ClusterIP
   ports:
@@ -16,7 +16,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-      app: arcadia-unit
+      app: arcadia-main
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,18 +24,18 @@ metadata:
   name: arcadia-main-unit
   namespace: arcadia
   labels:
-    app: arcadia-unit
+    app: arcadia-main
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arcadia-unit
+      app: arcadia-main
       version: v1
   template:
     metadata:
       labels:
-        app: arcadia-unit
+        app: arcadia-main
         version: v1
     spec:
       containers:

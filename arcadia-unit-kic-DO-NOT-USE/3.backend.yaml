@@ -4,10 +4,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: arcadia-backend-unit
+  name: backend
   namespace: arcadia
   labels:
-    app: arcadia-unit
+    app: arcadia-backend
 spec:
   type: ClusterIP
   ports:
@@ -16,7 +16,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-      app: arcadia-unit
+      app: arcadia-backend
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -24,18 +24,18 @@ metadata:
   name: arcadia-backend-unit
   namespace: arcadia
   labels:
-    app: arcadia-unit
+    app: arcadia-backend
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arcadia-unit
+      app: arcadia-backend
       version: v1
   template:
     metadata:
       labels:
-        app: arcadia-unit
+        app: arcadia-backend
         version: v1
     spec:
       containers:

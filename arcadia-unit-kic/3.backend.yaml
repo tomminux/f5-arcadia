@@ -7,44 +7,44 @@ metadata:
   name: backend
   namespace: arcadia
   labels:
-    app: arcadia-backend
+    app: arcadia-unit-backend
 spec:
   type: ClusterIP
   ports:
-  - name: arcadia-backend-unit-80
+  - name: arcadia-unit-backend-80
     port: 80
     protocol: TCP
     targetPort: 8080
   selector:
-      app: arcadia-backend
+      app: arcadia-unit-backend
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arcadia-backend-unit
+  name: arcadia-unit-backend
   namespace: arcadia
   labels:
-    app: arcadia-backend
+    app: arcadia-unit-backend
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arcadia-backend
+      app: arcadia-unit-backend
       version: v1
   template:
     metadata:
       labels:
-        app: arcadia-backend
+        app: arcadia-unit-backend
         version: v1
     spec:
       containers:
       - env:
         - name: service_name
-          value: arcadia-backend-unit
+          value: arcadia-unit-backend
         image: registry.f5-udf.com:5000/arcadia-backend:unit
         imagePullPolicy: Always
-        name: arcadia-backend-unit
+        name: arcadia-unit-backend
         ports:
         - containerPort: 8080
           protocol: TCP

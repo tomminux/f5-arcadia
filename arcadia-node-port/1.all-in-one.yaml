@@ -69,35 +69,35 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: arcadia-np-main-80
+    app: arcadia-np-main
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: arcadia-np-main-80
+  name: arcadia-np-main
   namespace: arcadia
   labels:
-    app: arcadia-np-main-80
+    app: arcadia-np-main
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: arcadia-np-main-80
+      app: arcadia-np-main
       version: v1
   template:
     metadata:
       labels:
-        app: arcadia-np-main-80
+        app: arcadia-np-main
         version: v1
     spec:
       containers:
       - env:
         - name: service_name
-          value: arcadia-np-main-80
+          value: arcadia-np-main
         image: registry.gitlab.com/arcadia-application/main-app/mainapp:latest
         imagePullPolicy: IfNotPresent
-        name: arcadia-np-main-80
+        name: arcadia-np-main
         ports:
         - containerPort: 80
           protocol: TCP
@@ -120,7 +120,7 @@ spec:
     name: arcadia-np-app2-80
     nodePort: 30362
   selector:
-    app: app2
+    app: arcadia-np-app2
 ---
 apiVersion: apps/v1
 kind: Deployment

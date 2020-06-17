@@ -7,13 +7,13 @@ spec:
   host: www.arcadia-finance.io
   upstreams:
   - name: arcadia-main
-    service: arcadia-main
+    service: arcadia-unit-main
     port: 80
   - name: arcadia-app2
-    service: arcadia-app2
+    service: arcadia-unit-app2
     port: 80
   - name: arcadia-app3
-    service: arcadia-app3
+    service: arcadia-unit-app3
     port: 80
   routes:
   - path: /

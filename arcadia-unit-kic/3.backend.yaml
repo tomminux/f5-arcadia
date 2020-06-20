@@ -41,7 +41,7 @@ spec:
       containers:
       - env:
         - name: service_name
-          value: arcadia-unit-backend
+          value: backend
         image: registry.f5-udf.com:5000/arcadia-backend:unit
         imagePullPolicy: Always
         name: arcadia-unit-backend

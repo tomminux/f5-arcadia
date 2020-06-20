@@ -4,7 +4,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: arcadia-np-backend
+  name: backend
   namespace: arcadia
   labels:
     app: arcadia-np-backend
@@ -41,7 +41,7 @@ spec:
       containers:
       - env:
         - name: service_name
-          value: arcadia-np-backend
+          value: backend
         image: registry.gitlab.com/arcadia-application/back-end/backend:latest
         imagePullPolicy: IfNotPresent
         name: arcadia-np-backend
@@ -162,7 +162,7 @@ metadata:
   name: arcadia-np-app3
   namespace: arcadia
   labels:
-    app: arcadia-np-app3
+    app: arcadia-app3
     service: arcadia-np-app3
 spec:
   type: NodePort
@@ -196,7 +196,7 @@ spec:
       containers:
       - env:
         - name: service_name
-          value: arcadia-np-app3
+          value: arcadia-app3
         image: registry.gitlab.com/arcadia-application/app3/app3:latest
         imagePullPolicy: IfNotPresent
         name: arcadia-np-app3

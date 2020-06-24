@@ -47,7 +47,7 @@ spec:
             "--bigip-partition=k8s-udf",
             "--pool-member-type=cluster",
             "--insecure=true",
-            "--namespace=arcadia-nodeport",
+            "--namespace=arcadia-unit",
             "--log-level=DEBUG",
             "--manage-ingress=false",
             "--manage-routes=false",

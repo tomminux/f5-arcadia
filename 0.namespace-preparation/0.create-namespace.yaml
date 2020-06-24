@@ -1,4 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: arcadia
+  name: arcadia-unit
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: arcadia-nodeport

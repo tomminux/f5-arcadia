@@ -5,7 +5,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
-  namespace: arcadia
+  namespace: arcadia-unit
   labels:
     app: arcadia-unit-backend
 spec:
@@ -22,7 +22,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: arcadia-unit-backend
-  namespace: arcadia
+  namespace: arcadia-unit
   labels:
     app: arcadia-unit-backend
     version: v1

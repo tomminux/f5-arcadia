@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nginx-ingress
-  namespace: arcadia
+  namespace: arcadia-unit
 ---
 ## ..:: Cluster Role ::..
 ## ----------------------------------------------------------------------------
@@ -87,7 +87,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: nginx-ingress
-  namespace: arcadia
+  namespace: arcadia-unit
 roleRef:
   kind: ClusterRole
   name: nginx-ingress
@@ -99,7 +99,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: default-server-secret
-  namespace: arcadia
+  namespace: arcadia-unit
 type: Opaque
 data:
   tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN2akNDQWFZQ0NRREFPRjl0THNhWFhEQU5CZ2txaGtpRzl3MEJBUXNGQURBaE1SOHdIUVlEVlFRRERCWk8KUjBsT1dFbHVaM0psYzNORGIyNTBjbTlzYkdWeU1CNFhEVEU0TURreE1qRTRNRE16TlZvWERUSXpNRGt4TVRFNApNRE16TlZvd0lURWZNQjBHQTFVRUF3d1dUa2RKVGxoSmJtZHlaWE56UTI5dWRISnZiR3hsY2pDQ0FTSXdEUVlKCktvWklodmNOQVFFQkJRQURnZ0VQQURDQ0FRb0NnZ0VCQUwvN2hIUEtFWGRMdjNyaUM3QlBrMTNpWkt5eTlyQ08KR2xZUXYyK2EzUDF0azIrS3YwVGF5aGRCbDRrcnNUcTZzZm8vWUk1Y2Vhbkw4WGM3U1pyQkVRYm9EN2REbWs1Qgo4eDZLS2xHWU5IWlg0Rm5UZ0VPaStlM2ptTFFxRlBSY1kzVnNPazFFeUZBL0JnWlJVbkNHZUtGeERSN0tQdGhyCmtqSXVuektURXUyaDU4Tlp0S21ScUJHdDEwcTNRYzhZT3ExM2FnbmovUWRjc0ZYYTJnMjB1K1lYZDdoZ3krZksKWk4vVUkxQUQ0YzZyM1lma1ZWUmVHd1lxQVp1WXN2V0RKbW1GNWRwdEMzN011cDBPRUxVTExSakZJOTZXNXIwSAo1TmdPc25NWFJNV1hYVlpiNWRxT3R0SmRtS3FhZ25TZ1JQQVpQN2MwQjFQU2FqYzZjNGZRVXpNQ0F3RUFBVEFOCkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQWpLb2tRdGRPcEsrTzhibWVPc3lySmdJSXJycVFVY2ZOUitjb0hZVUoKdGhrYnhITFMzR3VBTWI5dm15VExPY2xxeC9aYzJPblEwMEJCLzlTb0swcitFZ1U2UlVrRWtWcitTTFA3NTdUWgozZWI4dmdPdEduMS9ienM3bzNBaS9kclkrcUI5Q2k1S3lPc3FHTG1US2xFaUtOYkcyR1ZyTWxjS0ZYQU80YTY3Cklnc1hzYktNbTQwV1U3cG9mcGltU1ZmaXFSdkV5YmN3N0NYODF6cFErUyt1eHRYK2VBZ3V0NHh3VlI5d2IyVXYKelhuZk9HbWhWNThDd1dIQnNKa0kxNXhaa2VUWXdSN0diaEFMSkZUUkk3dkhvQXprTWIzbjAxQjQyWjNrN3RXNQpJUDFmTlpIOFUvOWxiUHNoT21FRFZkdjF5ZytVRVJxbStGSis2R0oxeFJGcGZnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
@@ -111,7 +111,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: nginx-config
-  namespace: arcadia
+  namespace: arcadia-unit
 data:
 ---
 ## ..:: NGINX VS and VSRotue ::..
@@ -120,7 +120,7 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: virtualservers.k8s.nginx.org
-  namespace: arcadia
+  namespace: arcadia-unit
 spec:
   group: k8s.nginx.org
   versions:
@@ -139,7 +139,7 @@ apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   name: virtualserverroutes.k8s.nginx.org
-  namespace: arcadia
+  namespace: arcadia-unit
 spec:
   group: k8s.nginx.org
   versions:
@@ -160,7 +160,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress
-  namespace: arcadia
+  namespace: arcadia-unit
 spec:
   replicas: 1
   selector:
@@ -219,10 +219,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: arcadia-kic-80
-  namespace: arcadia
+  namespace: arcadia-unit
   labels:
     app: nginx-ingress
-    cis.f5.com/as3-tenant: arcadia
+    cis.f5.com/as3-tenant: arcadia-unit
     cis.f5.com/as3-app: arcadia-kic-80
     cis.f5.com/as3-pool: arcadia-kic-pool-80
 spec:
@@ -241,10 +241,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: arcadia-kic-443
-  namespace: arcadia
+  namespace: arcadia-unit
   labels:
     app: nginx-ingress
-    cis.f5.com/as3-tenant: arcadia
+    cis.f5.com/as3-tenant: arcadia-unit
     cis.f5.com/as3-app: arcadia-kic-443
     cis.f5.com/as3-pool: arcadia-kic-pool-443
 spec:
@@ -263,7 +263,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: arcadia-f5-to-kic
-  namespace: arcadia
+  namespace: arcadia-unit
   labels:
     f5type: virtual-server
     as3: "true"
@@ -277,7 +277,7 @@ data:
             "id": "urn:uuid:33045210-3ab8-4636-9b2a-c98d22ab915d",
             "label": "http",
             "remark": "A1 Template",
-            "arcadia": {
+            "arcadia-unit": {
                 "class": "Tenant",
                 "arcadia-kic-80": {
                     "class": "Application",

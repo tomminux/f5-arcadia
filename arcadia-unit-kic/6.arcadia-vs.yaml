@@ -2,7 +2,7 @@ apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
 metadata:
   name: arcadia-unit-vs
-  namespace: arcadia
+  namespace: arcadia-unit
 spec:
   host: www.arcadia-finance.io
   upstreams:
